@@ -1,0 +1,10 @@
+.mainInputContainer {
+  padding: 1rem;
+}
+.mainInputContainer > input {
+  padding: 1rem;
+  font-size: large;
+}
+input:focus {
+  outline: 1px solid red;
+}
