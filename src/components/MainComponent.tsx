@@ -8,8 +8,20 @@ function MainComponent() {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [count, setCount] = useState(0);
   useEffect(() => {
-    let timer=logicObject.handleDebounce(searchText, setError, setSearchResult);
+    let timer: any;
+    async function getData() {
+      timer = await logicObject.handleDebounce(
+        searchText,
+        setError,
+        setSearchResult,
+        isLoading,
+        setIsLoading
+      );
+    }
+    getData();
+
     return () => {
       clearTimeout(timer);
     };
@@ -17,7 +29,14 @@ function MainComponent() {
   return (
     <div className="mainContainer">
       <CustomTextInput searchText={searchText} setSearchText={setSearchText} />
-      <Suggestion data={searchResult} isLoading={isLoading} error={error} />
+      {searchText && (
+        <Suggestion
+          data={searchResult}
+          isLoading={isLoading}
+          error={error}
+          searchText={searchText}
+        />
+      )}
     </div>
   );
 }
