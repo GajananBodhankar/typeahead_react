@@ -3,16 +3,14 @@
   align-items: center;
   position: relative;
   flex-direction: column;
-  width: 13.5rem;
-  margin: auto;
+  box-sizing: border-box;
 }
 .mainSuggestionContainer {
   border: 1px solid black;
   max-height: 10rem;
   overflow-y: scroll;
   position: absolute;
-  top: 4.5rem;
-  padding: 0 1rem;
+  top: 3.5rem;
   width: 100%;
 }
 .mainSuggestionEmpty {

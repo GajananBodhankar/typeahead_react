@@ -1,8 +1,10 @@
 .mainInputContainer {
-  padding: 1rem;
+  width: 100%;
+  display: flex;
 }
 .mainInputContainer > input {
   padding: 1rem;
+  flex: 1;
   font-size: large;
 }
 input:focus {

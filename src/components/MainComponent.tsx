@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../Styles/main.css";
 import CustomTextInput from "./CustomTextInput";
 import Suggestion from "./Suggestion";
@@ -8,17 +8,22 @@ function MainComponent() {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(-1);
   useEffect(() => {
     let timer: any;
     async function getData() {
-      timer = await logicObject.handleDebounce(
-        searchText,
-        setError,
-        setSearchResult,
-        isLoading,
-        setIsLoading
-      );
+      if (localStorage.getItem(searchText)) {
+        setIsLoading(false);
+        setSearchResult(JSON.parse(localStorage.getItem(searchText) ?? ""));
+      } else {
+        timer = await logicObject.handleDebounce(
+          searchText,
+          setError,
+          setSearchResult,
+          isLoading,
+          setIsLoading
+        );
+      }
     }
     getData();
 
@@ -28,9 +33,16 @@ function MainComponent() {
   }, [searchText]);
   return (
     <div className="mainContainer">
-      <CustomTextInput searchText={searchText} setSearchText={setSearchText} />
+      <CustomTextInput
+        searchText={searchText}
+        setSearchText={setSearchText}
+        searchResult={searchResult}
+        count={count}
+        setCount={setCount}
+      />
       {searchText && (
         <Suggestion
+          count={count}
           data={searchResult}
           isLoading={isLoading}
           error={error}

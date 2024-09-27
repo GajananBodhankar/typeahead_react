@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 function SetHighlight({ text, search }: any) {
   return (
     <>
@@ -15,8 +15,8 @@ function SetHighlight({ text, search }: any) {
     </>
   );
 }
-function Suggestion({ data, isLoading, error, searchText }: any) {
-  console.log(isLoading, error,searchText);
+function Suggestion({ data, isLoading, error, searchText, count }: any) {
+  console.log(isLoading, error, searchText, data);
   return (
     <div
       className={
@@ -45,9 +45,15 @@ function Suggestion({ data, isLoading, error, searchText }: any) {
               },
               index: any
             ) => (
-              <p key={index}>
+              <p
+                key={index}
+                style={{
+                  backgroundColor: count == index ? "#e6e6e6" : "white",
+                  margin: 0,
+                  padding: "1rem ",
+                }}
+              >
                 <SetHighlight text={item.name} search={searchText} />
-                {/* {item} */}
               </p>
             )
           )
