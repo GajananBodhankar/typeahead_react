@@ -46,7 +46,7 @@ class Logic {
           setError("");
         }
         setIsLoading(false);
-      }, 1000);
+      }, 10000);
     } else {
       setSearchResult([]);
       setError("");

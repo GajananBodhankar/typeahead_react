@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import { Audio, ThreeDots } from "react-loader-spinner";
 function SetHighlight({ text, search }: any) {
   return (
     <>
@@ -60,7 +61,20 @@ function Suggestion(
               </p>
             )
           )
-        : isLoading && !error && <p>Loading</p>}
+        : isLoading &&
+          !error && (
+            <div className="loading">
+              <p>Loading</p>
+              <ThreeDots
+                visible={true}
+                height="50"
+                width="50"
+                color="grey"
+                radius="9"
+                ariaLabel="three-dots-loading"
+              />
+            </div>
+          )}
     </div>
   );
 }
