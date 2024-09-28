@@ -2,7 +2,16 @@ import { forwardRef } from "react";
 import "../Styles/input.css";
 import logicObject from "./Logic";
 function CustomTextInput(
-  { searchText, setSearchText, searchResult, setCount }: any,
+  {
+    searchText,
+    setSearchText,
+    searchResult,
+    setCount,
+    count,
+    setSearchResult,
+    isApiCall,
+    setIsApiCall,
+  }: any,
   ref: any
 ) {
   return (
@@ -10,11 +19,20 @@ function CustomTextInput(
       <input
         type="text"
         onKeyDown={(e) => {
-          logicObject.handleKeyDownAndUp(e, searchResult, setCount, ref);
+          logicObject.handleKeyDownAndUp(
+            e,
+            searchResult,
+            count,
+            setCount,
+            ref,
+            setSearchText,
+            setSearchResult,
+            setIsApiCall
+          );
         }}
         placeholder="Enter search"
         value={searchText}
-        onChange={(e) => logicObject.handleChange(e,  setSearchText)}
+        onChange={(e) => logicObject.handleChange(e, setSearchText,setIsApiCall)}
       />
     </div>
   );

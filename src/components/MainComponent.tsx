@@ -10,7 +10,7 @@ function MainComponent() {
   const [error, setError] = useState("");
   const [count, setCount] = useState(-1);
   const scrollRef = useRef<any>(null);
-
+  const [isApiCall, setIsApiCall] = useState(true);
   useEffect(() => {
     let timer: any;
     async function getData() {
@@ -26,7 +26,7 @@ function MainComponent() {
         );
       }
     }
-    getData();
+    isApiCall && getData();
 
     return () => {
       clearTimeout(timer);
@@ -37,9 +37,13 @@ function MainComponent() {
       <CustomTextInput
         ref={scrollRef}
         searchText={searchText}
+        count={count}
         setSearchText={setSearchText}
         searchResult={searchResult}
         setCount={setCount}
+        setSearchResult={setSearchResult}
+        isApiCall={isApiCall}
+        setIsApiCall={setIsApiCall}
       />
 
       {searchText && (

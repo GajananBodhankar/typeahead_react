@@ -16,8 +16,10 @@ class Logic {
   }
   handleChange(
     e: ChangeEvent<HTMLInputElement>,
-    setSearch: (arg0: any) => void
+    setSearch: (arg0: any) => void,
+    setIsApiCall: (arg0: boolean) => void
   ) {
+    setIsApiCall(true);
     setSearch(e.target.value);
   }
   async handleDebounce(
@@ -46,7 +48,7 @@ class Logic {
           setError("");
         }
         setIsLoading(false);
-      }, 10000);
+      }, 1000);
     } else {
       setSearchResult([]);
       setError("");
@@ -57,9 +59,14 @@ class Logic {
   handleKeyDownAndUp(
     e: { key: string },
     searchResult: string | any[],
+    count: number,
     setCount: (arg0: { (prev: any): number; (prev: any): any }) => void,
-    ref: any
+    ref: any,
+    setSearchText: (arg0: any) => void,
+    setSearchResult: (arg0: never[]) => void,
+    setIsApiCall: (arg0: boolean) => void
   ) {
+    console.log(e.key);
     switch (e.key) {
       case "ArrowUp": {
         setCount((prev) => {
@@ -70,9 +77,9 @@ class Logic {
             });
             return searchResult.length - 1;
           } else {
-            if (prev % 3 == 0) {
+            if (prev % 2 == 0) {
               ref?.current?.scrollTo({
-                top: ref?.current?.scrollTop - 70,
+                top: ref?.current?.scrollTop - 100,
                 behavior: "smooth",
               });
             }
@@ -92,7 +99,7 @@ class Logic {
           } else {
             if (prev % 2 == 0 && prev > 0) {
               ref.current?.scroll({
-                top: ref?.current.scrollTop + 100,
+                top: ref?.current.scrollTop + 110,
                 behavior: "smooth",
               });
             }
@@ -101,17 +108,16 @@ class Logic {
         });
         break;
       }
+      case "Enter": {
+        if (count >= 0) {
+          setSearchText(searchResult[count].name);
+          setSearchResult([]);
+          setIsApiCall(false);
+        }
+      }
     }
-    // if (e.key == "ArrowUp") {
-    // } else if (e.key == "ArrowDown") {
-    // }
   }
 }
-
-//{text.slice(0, text.toLowerCase().indexOf(search))}
-//  <span>
-
-// </span>
 
 let logicObject = new Logic();
 
