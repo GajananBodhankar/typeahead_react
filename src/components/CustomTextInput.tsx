@@ -3,12 +3,7 @@ import "../Styles/input.css";
 import logicObject from "./Logic";
 function CustomTextInput(
   { searchText, setSearchText, searchResult, setCount }: any,
-  ref: {
-    current: {
-      scroll: (arg0: { top: any; behavior: string }) => void;
-      scrollTop: number;
-    };
-  }
+  ref: any
 ) {
   return (
     <div className="mainInputContainer">
@@ -19,7 +14,7 @@ function CustomTextInput(
         }}
         placeholder="Enter search"
         value={searchText}
-        onChange={(e) => logicObject.handleChange(e, searchText, setSearchText)}
+        onChange={(e) => logicObject.handleChange(e,  setSearchText)}
       />
     </div>
   );

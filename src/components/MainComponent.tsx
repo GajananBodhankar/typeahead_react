@@ -22,7 +22,6 @@ function MainComponent() {
           searchText,
           setError,
           setSearchResult,
-          isLoading,
           setIsLoading
         );
       }

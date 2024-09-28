@@ -17,7 +17,6 @@ class Logic {
   }
   handleChange(
     e: ChangeEvent<HTMLInputElement>,
-    search: any,
     setSearch: (arg0: any) => void
   ) {
     setSearch(e.target.value);
@@ -26,7 +25,6 @@ class Logic {
     searchText: string,
     setError: { (value: SetStateAction<string>): void; (arg0: string): void },
     setSearchResult: { (value: any): void; (arg0: never[]): void },
-    isLoading: boolean,
     setIsLoading: {
       (value: SetStateAction<boolean>): void;
       (arg0: boolean): void;
