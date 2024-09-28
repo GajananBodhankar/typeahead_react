@@ -42,7 +42,6 @@ function MainComponent() {
         searchResult={searchResult}
         setCount={setCount}
         setSearchResult={setSearchResult}
-        isApiCall={isApiCall}
         setIsApiCall={setIsApiCall}
       />
 

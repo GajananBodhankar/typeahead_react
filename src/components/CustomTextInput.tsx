@@ -9,7 +9,6 @@ function CustomTextInput(
     setCount,
     count,
     setSearchResult,
-    isApiCall,
     setIsApiCall,
   }: any,
   ref: any
