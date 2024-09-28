@@ -31,7 +31,9 @@ function CustomTextInput(
         }}
         placeholder="Enter search"
         value={searchText}
-        onChange={(e) => logicObject.handleChange(e, setSearchText,setIsApiCall)}
+        onChange={(e) =>
+          logicObject.handleChange(e, setSearchText, setIsApiCall)
+        }
       />
     </div>
   );

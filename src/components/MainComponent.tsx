@@ -16,8 +16,10 @@ function MainComponent() {
     async function getData() {
       if (localStorage.getItem(searchText)) {
         setIsLoading(false);
+        setCount(-1);
         setSearchResult(JSON.parse(localStorage.getItem(searchText) ?? ""));
       } else {
+        setCount(-1);
         timer = await logicObject.handleDebounce(
           searchText,
           setError,
@@ -53,6 +55,9 @@ function MainComponent() {
           isLoading={isLoading}
           error={error}
           searchText={searchText}
+          setSearchResult={setSearchResult}
+          setSearchText={setSearchText}
+          setIsApiCall={setIsApiCall}
         />
       )}
     </div>

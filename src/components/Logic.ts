@@ -117,6 +117,16 @@ class Logic {
       }
     }
   }
+  handleSelect(
+    item: { name: any },
+    setSearchResult: (arg0: never[]) => void,
+    setSearchText: (arg0: any) => void,
+    setIsApiCall: (arg0: boolean) => void
+  ) {
+    setSearchText(item?.name);
+    setSearchResult([]);
+    setIsApiCall(false);
+  }
 }
 
 let logicObject = new Logic();

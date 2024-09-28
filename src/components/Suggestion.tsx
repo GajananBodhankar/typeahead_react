@@ -1,9 +1,19 @@
 import React, { forwardRef } from "react";
 import Loading from "./Loading";
 import SetHighlight from "./SetHighlight";
+import logicObject from "./Logic";
 
 function Suggestion(
-  { data, isLoading, error, searchText, count }: any,
+  {
+    data,
+    isLoading,
+    error,
+    searchText,
+    count,
+    setSearchResult,
+    setSearchText,
+    setIsApiCall,
+  }: any,
   ref: React.LegacyRef<HTMLInputElement> | undefined
 ) {
   console.log(isLoading, error, searchText, data);
@@ -24,7 +34,16 @@ function Suggestion(
               key={index}
               style={{
                 backgroundColor: count == index ? "#e6e6e6" : "white",
+                borderBottom: "0.5px solid grey",
               }}
+              onClick={() =>
+                logicObject.handleSelect(
+                  item,
+                  setSearchResult,
+                  setSearchText,
+                  setIsApiCall
+                )
+              }
             >
               <SetHighlight text={item.name} search={searchText} />
             </p>
