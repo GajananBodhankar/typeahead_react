@@ -61,18 +61,24 @@ class Logic {
     e: { key: string },
     searchResult: string | any[],
     setCount: (arg0: { (prev: any): number; (prev: any): any }) => void,
-    ref: { current: { scroll: (arg0: { top: number; behavior: string; }) => void; }; } | undefined
+    ref: any
   ) {
     switch (e.key) {
       case "ArrowUp": {
         setCount((prev) => {
           if (prev <= 0) {
-            // ref.current?.scroll({
-            //   top: 0,
-            //   behavior: "smooth",
-            // });
+            ref?.current?.scrollTo({
+              top: ref?.current?.scrollHeight,
+              behavior: "smooth",
+            });
             return searchResult.length - 1;
           } else {
+            if (prev % 3 == 0) {
+              ref?.current?.scrollTo({
+                top: ref?.current?.scrollTop - 70,
+                behavior: "smooth",
+              });
+            }
             return prev - 1;
           }
         });
@@ -81,12 +87,18 @@ class Logic {
       case "ArrowDown": {
         setCount((prev) => {
           if (prev == searchResult.length - 1) {
-            // ref.current?.scroll({
-            //   top: 0,
-            //   behavior: "smooth",
-            // });
+            ref.current?.scroll({
+              top: 0,
+              behavior: "smooth",
+            });
             return 0;
           } else {
+            if (prev % 2 == 0 && prev > 0) {
+              ref.current?.scroll({
+                top: ref?.current.scrollTop + 100,
+                behavior: "smooth",
+              });
+            }
             return prev + 1;
           }
         });
