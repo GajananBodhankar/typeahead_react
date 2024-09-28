@@ -4,7 +4,6 @@ function CustomTextInput({
   searchText,
   setSearchText,
   searchResult,
-  count,
   setCount,
 }: any) {
   return (

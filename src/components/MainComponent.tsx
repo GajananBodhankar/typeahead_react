@@ -37,7 +37,6 @@ function MainComponent() {
         searchText={searchText}
         setSearchText={setSearchText}
         searchResult={searchResult}
-        count={count}
         setCount={setCount}
       />
       {searchText && (
