@@ -13,6 +13,10 @@
   top: 3.5rem;
   width: 100%;
 }
+.mainSuggestionContainer p {
+  margin: 0;
+  padding: 1rem;
+}
 
 ::-webkit-scrollbar {
   width: 5px;

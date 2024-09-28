@@ -8,7 +8,6 @@ class Logic {
         `https://dummyjson.com/recipes/search?q=${query}`
       );
       let data = await result.json();
-      console.log(data);
       return data?.recipes;
     } catch (error) {
       console.log(JSON.stringify(error));
@@ -47,7 +46,7 @@ class Logic {
           setError("");
         }
         setIsLoading(false);
-      }, 500);
+      }, 1000);
     } else {
       setSearchResult([]);
       setError("");

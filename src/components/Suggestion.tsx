@@ -54,8 +54,6 @@ function Suggestion(
                 key={index}
                 style={{
                   backgroundColor: count == index ? "#e6e6e6" : "white",
-                  margin: 0,
-                  padding: "1rem ",
                 }}
               >
                 <SetHighlight text={item.name} search={searchText} />
