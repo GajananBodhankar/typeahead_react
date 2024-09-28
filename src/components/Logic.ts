@@ -60,25 +60,42 @@ class Logic {
   handleKeyDownAndUp(
     e: { key: string },
     searchResult: string | any[],
-    setCount: (arg0: { (prev: any): number; (prev: any): any }) => void
+    setCount: (arg0: { (prev: any): number; (prev: any): any }) => void,
+    ref: { current: { scroll: (arg0: { top: number; behavior: string; }) => void; }; } | undefined
   ) {
-    if (e.key == "ArrowUp") {
-      setCount((prev) => {
-        if (prev <= 0) {
-          return searchResult.length - 1;
-        } else {
-          return prev - 1;
-        }
-      });
-    } else if (e.key == "ArrowDown") {
-      setCount((prev) => {
-        if (prev == searchResult.length - 1) {
-          return 0;
-        } else {
-          return prev + 1;
-        }
-      });
+    switch (e.key) {
+      case "ArrowUp": {
+        setCount((prev) => {
+          if (prev <= 0) {
+            // ref.current?.scroll({
+            //   top: 0,
+            //   behavior: "smooth",
+            // });
+            return searchResult.length - 1;
+          } else {
+            return prev - 1;
+          }
+        });
+        break;
+      }
+      case "ArrowDown": {
+        setCount((prev) => {
+          if (prev == searchResult.length - 1) {
+            // ref.current?.scroll({
+            //   top: 0,
+            //   behavior: "smooth",
+            // });
+            return 0;
+          } else {
+            return prev + 1;
+          }
+        });
+        break;
+      }
     }
+    // if (e.key == "ArrowUp") {
+    // } else if (e.key == "ArrowDown") {
+    // }
   }
 }
 

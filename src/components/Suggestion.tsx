@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, useRef } from "react";
 function SetHighlight({ text, search }: any) {
   return (
     <>
@@ -15,10 +15,15 @@ function SetHighlight({ text, search }: any) {
     </>
   );
 }
-function Suggestion({ data, isLoading, error, searchText, count }: any) {
+function Suggestion(
+  { data, isLoading, error, searchText, count }: any,
+  ref: React.LegacyRef<HTMLInputElement> | undefined
+) {
   console.log(isLoading, error, searchText, data);
+  // const scrollRef = useRef<any>(null);
   return (
     <div
+      ref={ref}
       className={
         data?.length || error || isLoading
           ? "mainSuggestionContainer"
@@ -62,4 +67,4 @@ function Suggestion({ data, isLoading, error, searchText, count }: any) {
   );
 }
 
-export default React.memo(Suggestion);
+export default React.memo(forwardRef(Suggestion));

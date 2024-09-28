@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../Styles/main.css";
 import CustomTextInput from "./CustomTextInput";
 import Suggestion from "./Suggestion";
@@ -9,6 +9,8 @@ function MainComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [count, setCount] = useState(-1);
+  const scrollRef = useRef<any>(null);
+
   useEffect(() => {
     let timer: any;
     async function getData() {
@@ -34,13 +36,16 @@ function MainComponent() {
   return (
     <div className="mainContainer">
       <CustomTextInput
+        ref={scrollRef}
         searchText={searchText}
         setSearchText={setSearchText}
         searchResult={searchResult}
         setCount={setCount}
       />
+
       {searchText && (
         <Suggestion
+          ref={scrollRef}
           count={count}
           data={searchResult}
           isLoading={isLoading}
